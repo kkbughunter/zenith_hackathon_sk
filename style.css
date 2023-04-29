@@ -1,0 +1,99 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.title {
+  height: 100px;
+  width: 800px;
+  background: linear-gradient(to right,rgb(102, 174, 210),rgba(0, 0, 255, 0.566));
+  border-radius: 4%;
+}
+
+.title-text {
+  text-align: center;
+  padding-top: 2%;
+}
+
+.button-container {
+  margin-top: 2%;
+  margin-left: 10%;
+  display: flex; 
+}
+
+.auto-mode {
+  background-color: green;
+  color: white;
+  height: 240px;
+  width: 240px;
+  border-radius: 8%;
+  font-size: auto;
+  font-size: large;
+}
+
+.manual-mode {
+  background-color: red;
+  color: white;
+  height: 240px;
+  width: 240px;
+  border-radius: 8%;
+  font-size: 300%,auto;
+  font-size: large;
+}
+
+.off-mode{
+  margin-top: 5%;
+  padding: 20px;
+  margin-left: 33%;
+  background-color: chartreuse;
+  border-radius: 14%;
+  font-size: large;
+}
+
+.on-mode{
+  margin-top: 5%;
+  padding: 20px;
+  margin-left: 37%;
+  background-color: lightcoral;
+  border-radius: 14%;
+  font-size: large;
+}
+
+.info{
+  margin-left: 5%;
+  background-color: rgb(211, 220, 211);
+  height: 340px;
+  width: 240px;
+  border-radius: 4%;
+}
+.weather{
+  background-color: lightgreen;
+  padding: 3.5%;
+  border-radius: 80%;
+  height: 20px;
+  margin-left: 5%;
+  margin-top: 5%;
+  text-align: center;
+  font-size: larger;
+}
+
+/* This is for mobile */
+
+@media (max-width: 480px) {
+  .title{
+    width: 100%;
+  }
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+  }
+  .info{
+    margin: 0%;
+    margin-top: 10%;
+  }
+
+}
