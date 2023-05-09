@@ -5,7 +5,6 @@ body {
   align-items: center;
 }
 
-
 .title {
   height: 100px;
   width: 800px;
@@ -30,8 +29,7 @@ body {
   height: 240px;
   width: 240px;
   border-radius: 8%;
-  font-size: auto;
-  font-size: large;
+  font-size: 60px;
 }
 
 .manual-mode {
@@ -40,8 +38,7 @@ body {
   height: 240px;
   width: 240px;
   border-radius: 8%;
-  font-size: 300%,auto;
-  font-size: large;
+  font-size: 60px;
 }
 
 .off-mode{
@@ -97,3 +94,4 @@ body {
   }
 
 }
+
