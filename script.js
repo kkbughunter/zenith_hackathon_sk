@@ -66,17 +66,17 @@ modeBtn.addEventListener('click', () => {
     modeBtn.classList.add('manual-mode');
     modeBtn.textContent = 'Manual';
     onOffBtn.style.display = 'block';
-    setAuto(1);
+    setAuto(0);
     setModeBtnState(1);
   } else {
     modeBtn.classList.remove('manual-mode');
     modeBtn.classList.add('auto-mode');
     modeBtn.textContent = 'Auto';
     onOffBtn.style.display = 'none';
-    setAuto(0);
+    setAuto(1);
     setModeBtnState(0);
-    setW_pump(0);             // if auto set on / off to off and change the button to off
-    setW_pumpState(0);
+    // setW_pump(0);             // if auto set on / off to off and change the button to off
+    // setW_pumpState(0);
   }
 });
 
@@ -97,6 +97,8 @@ onOffBtn.addEventListener('click', () => {
   }
 });
 
+
+
 function setAuto(val) {
   var dataRef = database.ref("statuses");
   dataRef.update({
@@ -104,9 +106,13 @@ function setAuto(val) {
   });
 }
 
+
 function setW_pump(val) {
   var dataRef = database.ref("statuses");
   dataRef.update({
     w_pump: val
   });
 }
+
+
+
