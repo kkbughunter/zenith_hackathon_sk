@@ -11,6 +11,8 @@
       <h1 class="title-text">Weather Integrated Automated System</h1>
       <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
 	    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </div>
 
     <div class="button-container">
@@ -18,15 +20,19 @@
         <div><button id="mode-btn" class="auto-mode"><h1>Auto</h1></button></div>
         <div><button id="onoff-btn" class="off-mode" style="display:none">Off</button></div>
       </div>
-      <div class="weather">32`C</div>
+      <div class="weather" id="temp">32`C</div>
       <div class="info"> 
         <div style="padding: 3%;">
           <h3>Information</h3>
           <p>hello welcome to ssn Zenith Hackathon</p>
+          <p>Value: <span id="output"></span></p>
         </div>
       </div>
     </div>
-    
+    <div>
+    <canvas id="probability_graph"  width="300px" height="100px"></canvas>
+    <canvas id="rain_graph"  width="300px" height="100px"></canvas>
+    </div>
   <script src="script.js"></script>
   </div>
 </body>
