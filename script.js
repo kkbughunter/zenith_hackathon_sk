@@ -22,7 +22,7 @@ var database = firebase.database();
 
 // Function to set mode button state based on auto state in the database
 function setModeBtnState(autoState) {
-  if (autoState === 1) {
+  if (autoState === 0) {
     modeBtn.classList.remove('auto-mode');
     modeBtn.classList.add('manual-mode');
     modeBtn.textContent = 'Manual';
@@ -67,16 +67,14 @@ modeBtn.addEventListener('click', () => {
     modeBtn.textContent = 'Manual';
     onOffBtn.style.display = 'block';
     setAuto(0);
-    setModeBtnState(1);
+    setModeBtnState(0);
   } else {
     modeBtn.classList.remove('manual-mode');
     modeBtn.classList.add('auto-mode');
     modeBtn.textContent = 'Auto';
     onOffBtn.style.display = 'none';
     setAuto(1);
-    setModeBtnState(0);
-    // setW_pump(0);             // if auto set on / off to off and change the button to off
-    // setW_pumpState(0);
+    setModeBtnState(1);
   }
 });
 
@@ -97,8 +95,6 @@ onOffBtn.addEventListener('click', () => {
   }
 });
 
-
-
 function setAuto(val) {
   var dataRef = database.ref("statuses");
   dataRef.update({
@@ -106,114 +102,9 @@ function setAuto(val) {
   });
 }
 
-
 function setW_pump(val) {
   var dataRef = database.ref("statuses");
   dataRef.update({
     w_pump: val
   });
 }
-
-
-
-database.ref("field_geo_data/probability_list").once("value", snapshot => {
-  const probability_list  = snapshot.val();
-  var probability_js_list = [];
-  for (var key in probability_list) {
-    probability_js_list.push(probability_list[key]);
-  }
-  console.log(probability_js_list);
-});
-
-database.ref("field_geo_data/rain_list").once("value", snapshot => {
-  const rain_list  = snapshot.val();
-  var rain_js_list = [];
-  for (var key in rain_list) {
-    rain_js_list.push(rain_list[key]);
-  }
-  console.log(rain_js_list);
-});
-
-
-const probabilityChart = new Chart(document.getElementById("probability_graph"), {
-  type: "line",
-  data: {
-    labels: [], // x-axis labels
-    datasets: [{
-      label: "Probability List",
-      data: [], // y-axis data
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgba(255, 99, 132, 1)",
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
-
-
-database.ref("field_geo_data/probability_list").once("value", snapshot => {
-  const probability_list = snapshot.val();
-
-  // Get labels and data arrays from probability_list object
-  const labels = Object.keys(probability_list);
-  const data = Object.values(probability_list);
-
-  // Update chart data and labels
-  probabilityChart.data.labels = labels;
-  probabilityChart.data.datasets[0].data = data;
-
-  // Update chart
-  probabilityChart.update();
-});
-
-
-
-
-
-const rainChart = new Chart(document.getElementById("rain_graph"), {
-  type: "bar",
-  data: {
-    labels: [], // x-axis labels
-    datasets: [{
-      label: "Rain List",
-      data: [], // y-axis data
-      backgroundColor: "rgba(0, 0, 255, 0.566)",
-      borderColor: "rgba(0, 0, 255, 0.566)",
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
-
-
-database.ref("field_geo_data/rain_list").once("value", snapshot => {
-  const rain_list = snapshot.val();
-
-  // Get labels and data arrays from probability_list object
-  const labels = Object.keys(rain_list);
-  const data = Object.values(rain_list);
-
-  // Update chart data and labels
-  rainChart.data.labels = labels;
-  rainChart.data.datasets[0].data = data;
-
-  // Update chart
-  rainChart.update();
-});
-
