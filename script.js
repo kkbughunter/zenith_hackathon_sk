@@ -111,7 +111,7 @@ function setW_pump(val) {
 
 database.ref("info/temp").once("value", snapshot =>{
   var temperature = snapshot.val();
-  document.getElementById("temp").innerHTML = (temperature*10)+"`C";
+  document.getElementById("temp").innerHTML = ("Temperature: "+temperature*10)+"`C";
 });
 
 database.ref("field_geo_data/probability_list").once("value", snapshot => {

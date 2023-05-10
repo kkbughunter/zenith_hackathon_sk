@@ -9,22 +9,49 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="title">
-      <h1 class="title-text">Weather Integrated Automated System</h1>
-    </div>
-
-    <div class="button-container">
-      <div>
-        <div><button id="mode-btn" class="auto-mode"><h1>Auto</h1></button></div>
-        <div><button id="onoff-btn" class="off-mode" style="display:none">Off</button></div>
+    <div class="tool-bar">
+      <strong><samp>WIAS-SK</samp></strong>
+        <a href="#Dashboard.html">Dashboard</a>
+        <a href="#Account.html">Account</a>
+        <a href="#About.html">About</a>
+      <div class="profile-card">
+        <img src="img/profile_icon.jpg" alt="profile" class="profile">
+        <em >you</em>
       </div>
-      <div class="weather" id="temp"></div>
-      <div class="info"> 
+    </div>
+    
+
+    <div class="container">
+      <div class="box">
+        <strong style="margin-left: 50%;">Controle</strong>
+        <div class="main-btn">
+          <button id="mode-btn" class="auto-mode"><h1>Auto</h1></button>
+          <button id="onoff-btn" class="off-mode" style="display:none">Off</button>
+        </div>
+        <img src="img/hot.png" alt="temp" style="height: 20%; padding-top: 4%; ">
+        <em class="weather" id="temp"></em>
+      </div>
+      <div class="box">
+        Box 2
+      </div>
+      <div class="box">
         <div style="padding: 3%;">
           <h3>Information</h3>
           <p>hello welcome to ssn Zenith Hackathon</p>
           <p>Value: <span id="output"></span></p>
         </div>
+      </div>
+      <div class="box">
+        Box 4
+      </div>
+    </div>
+    
+    
+    <div class="button-container">
+      
+      
+      <div class="info"> 
+        
       </div>
     </div>
     <div>
