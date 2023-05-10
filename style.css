@@ -27,33 +27,13 @@
 .profile-card{
   float: right;
 }
-/* ------------------------------------------------- */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  height: 89vh; /* Set the height of the container to full viewport height */
-}
 
-.box {
-  width: 50%; /* Set the width of each box to 50% to make 2 boxes per row */
-  height: 50%; /* Set the height of each box to 50% to make 2 boxes per column */
-  box-sizing: border-box; /* Include padding and border in the box size */
-  border: 1px solid black;
-}
 
-/* ------------------------------------------------- */
-
-.button-container {
-  margin-top: 2%;
-  margin-left: 10%;
-  display: flex; 
-}
 .main-btn{
   padding-left: 10%;
   padding-top: 2%;
 }
 .auto-mode {
-  background-color: rgb(239, 170, 255);
   color: black;
   height: 140px;
   width: 140px;
@@ -73,25 +53,21 @@
 }
 
 .off-mode{
-  margin-top: 8%;
+  margin-top: 3%;
   padding: 10px;
-  margin-left: 10%;
   background-color: chartreuse;
   border-radius: 14%;
   font-size: large;
-  float: right;
-  margin-right: 55%;
+  margin-left: 44px;
 }
 
 .on-mode{
-  margin-top: 8%;
+  margin-top: 3%;
   padding: 10px;
-  margin-left: 10%;
-  background-color: lightcoral;
+  background-color: rgb(255, 89, 0);
   border-radius: 14%;
-  font-size: large;  
-  float: right;
-  margin-right: 58%;
+  font-size: large;
+  margin-left: 48px;
 }
 
 .info{
@@ -106,25 +82,33 @@
   font-size: 30px;
 }
 
+.graph{
+  height: 50%;
+  width: 50%;
+}
+
+.About{
+  background-color: rgb(0, 0, 117);
+  color: aliceblue;
+  border-radius: 2%;
+}
+.content{
+  padding: 3%;
+}
 /* This is for mobile */
 
 @media (max-width: 480px) {
-  .title{
-    width: 100%;
-  }
-  .button-container {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10%;
+  .main-btn{
+    padding-left: 30%;
+    padding-top: 2%;
   }
   .info{
     margin: 0%;
     margin-top: 10%;
   }
-
+  .graph{
+    height: 100%;
+    width: 100%;
+  }
 }
 
-.probability_graphc{
-  height: 10px;
-  width: 10px;
-}

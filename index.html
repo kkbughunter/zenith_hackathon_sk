@@ -22,42 +22,47 @@
     
 
     <div class="container">
-      <div class="box">
-        <strong style="margin-left: 50%;">Controle</strong>
+      <div class="box1">
+        <h1>Control</h1>
         <div class="main-btn">
+          <!-- left side -->
           <button id="mode-btn" class="auto-mode"><h1>Auto</h1></button>
           <button id="onoff-btn" class="off-mode" style="display:none">Off</button>
         </div>
-        <img src="img/hot.png" alt="temp" style="height: 20%; padding-top: 4%; ">
+        <img src="img/hot.png" alt="temp" style="height: 40px; padding-top: 4%;padding-left: 6%; ">
         <em class="weather" id="temp"></em>
+        <div>
+          <!--  right side -->
+        </div>
       </div>
-      <div class="box">
-        Box 2
+      <div class="box2">
+        <!-- Box 2 empty -->
       </div>
-      <div class="box">
+      <div class="box3">
+        <h1>Statistics</h1>
+        <div class="graph">
+          <h4 style="margin-left: 20%;">Rain Probability Graph</h4>
+          <canvas id="probability_graph"  width="300px" height="100px"></canvas>
+          <h4 style="margin-left: 20%;">Rain Range Graph</h4>
+          <canvas id="rain_graph"  width="300px" height="100px"></canvas>
+        </div>
+      </div>
+      <div class="box4">
+        <h1>More Information</h1>
         <div style="padding: 3%;">
-          <h3>Information</h3>
           <p>hello welcome to ssn Zenith Hackathon</p>
           <p>Value: <span id="output"></span></p>
         </div>
       </div>
-      <div class="box">
-        Box 4
+    </div>
+    <div class="About">
+      <div class="content">
+        <h1>About</h1>
+      karthikeyan 
+      sri kanth
       </div>
     </div>
     
-    
-    <div class="button-container">
-      
-      
-      <div class="info"> 
-        
-      </div>
-    </div>
-    <div>
-    <canvas id="probability_graph"  width="300px" height="100px"></canvas>
-    <canvas id="rain_graph"  width="300px" height="100px"></canvas>
-    </div>
   <script src="script.js"></script>
 </body>
 </html>
