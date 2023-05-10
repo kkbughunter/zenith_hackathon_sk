@@ -108,3 +108,102 @@ function setW_pump(val) {
     w_pump: val
   });
 }
+
+database.ref("info/temp").once("value", snapshot =>{
+  var temperature = snapshot.val();
+  document.getElementById("temp").innerHTML = (temperature*10)+"`C";
+});
+
+database.ref("field_geo_data/probability_list").once("value", snapshot => {
+  const probability_list  = snapshot.val();
+  var probability_js_list = [];
+  for (var key in probability_list) {
+    probability_js_list.push(probability_list[key]);
+  }
+});
+
+database.ref("field_geo_data/rain_list").once("value", snapshot => {
+  const rain_list  = snapshot.val();
+  var rain_js_list = [];
+  for (var key in rain_list) {
+    rain_js_list.push(rain_list[key]);
+  }
+});
+
+const probabilityChart = new Chart(document.getElementById("probability_graph"), {
+  type: "line",
+  data: {
+    labels: [], // x-axis labels
+    datasets: [{
+      label: "Probability List",
+      data: [], // y-axis data
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(255, 99, 132, 1)",
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+
+database.ref("field_geo_data/probability_list").once("value", snapshot => {
+  const probability_list = snapshot.val();
+
+  // Get labels and data arrays from probability_list object
+  const labels = Object.keys(probability_list);
+  const data = Object.values(probability_list);
+
+  // Update chart data and labels
+  probabilityChart.data.labels = labels;
+  probabilityChart.data.datasets[0].data = data;
+
+  // Update chart
+  probabilityChart.update();
+});
+
+const rainChart = new Chart(document.getElementById("rain_graph"), {
+  type: "bar",
+  data: {
+    labels: [], // x-axis labels
+    datasets: [{
+      label: "Rain List",
+      data: [], // y-axis data
+      backgroundColor: "rgba(0, 0, 255, 0.566)",
+      borderColor: "rgba(0, 0, 255, 0.566)",
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+
+database.ref("field_geo_data/rain_list").once("value", snapshot => {
+  const rain_list = snapshot.val();
+
+  // Get labels and data arrays from probability_list object
+  const labels = Object.keys(rain_list);
+  const data = Object.values(rain_list);
+
+  // Update chart data and labels
+  rainChart.data.labels = labels;
+  rainChart.data.datasets[0].data = data;
+
+  // Update chart
+  rainChart.update();
+});
