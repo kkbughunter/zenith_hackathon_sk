@@ -1,69 +1,99 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>WIAIS-SK</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <div class="tool-bar">
-      <strong><samp>WIAS-SK</samp></strong>
-        <a href="index.html">Dashboard</a>
-        <a href="#Account.html">Account</a>
-        <a href="About.html">About</a>
-      <div class="profile-card">
-        <img src="img/profile_icon.jpg" alt="profile" class="profile">
-        <em >you</em>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Log In / Sign Up | UsmanLiaqat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+    <link rel="stylesheet" href="loginstyle.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="section">
+      <div class="container">
+        <div class="row full-height justify-content-center">
+          <div class="col-12 text-center align-self-center py-5">
+            <div class="section pb-5 pt-5 pt-sm-2 text-center">
+              <h6 class="mb-0 pb-3">
+                <span>Log In </span><span>Sign Up</span>
+              </h6>
+              <input
+                class="checkbox"
+                type="checkbox"
+                id="reg-log"
+                name="reg-log"
+              />
+              <label for="reg-log"></label>
+              <div class="card-3d-wrap mx-auto">
+                <div class="card-3d-wrapper">
+                  <div class="card-front">
+                    <div class="center-wrap">
+                      <div class="section text-center">
+                        <h4 class="mb-4 pb-3">Log In</h4>
+                        <div class="form-group">
+                          <input type="test" class="form-style" placeholder="Your Email" id="logemail"
+                          />
+                          <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input type="password" class="form-style" placeholder="Your Password" id="logpass" />
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <a class="btn mt-4" onclick="login()">submit</a>
+                        <p class="mb-0 mt-4 text-center">
+                          <a href="#0" class="link">Forgot your password?</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="center-wrap">
+                      <div class="section text-center">
+                        <h4 class="mb-4 pb-3">Sign Up</h4>
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            name="logname"
+                            class="form-style"
+                            placeholder="Your Full Name"
+                            id="logname"
+                            autocomplete="off"
+                          />
+                          <i class="input-icon uil uil-user"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input
+                            type="text"
+                            name="logemail"
+                            class="form-style"
+                            placeholder="Your Email"
+                            id="logemail"
+                          />
+                          <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input
+                            type="password"
+                            class="form-style"
+                            placeholder="Your Password"
+                            id="logpass"
+                          />
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <a href="#" class="btn mt-4">submit</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-
-    <div class="container">
-      <div class="box1">
-        <h1>Control</h1>
-        <div class="main-btn">
-          <!-- left side -->
-          <button id="mode-btn" class="auto-mode"><h1>Auto</h1></button>
-          <button id="onoff-btn" class="off-mode" style="display:none">Off</button>
-        </div>
-        <img src="img/hot.png" alt="temp" style="height: 40px; padding-top: 4%;padding-left: 6%; ">
-        <em class="weather" id="temp"></em>
-        <div>
-          <!--  right side -->
-        </div>
-      </div>
-      <div class="box2">
-        <!-- Box 2 empty -->
-      </div>
-      <div class="box3">
-        <h1>Statistics</h1>
-        <div class="graph">
-          <h4 style="margin-left: 20%;">Rain Probability Graph</h4>
-          <canvas id="probability_graph"  width="300px" height="100px"></canvas>
-          <h4 style="margin-left: 20%;">Rain Range Graph</h4>
-          <canvas id="rain_graph"  width="300px" height="100px"></canvas>
-        </div>
-      </div>
-      <div class="box4">
-        <h1>More Information</h1>
-        <div style="padding: 3%;">
-          <p>hello welcome to ssn Zenith Hackathon</p>
-          <p>Value: <span id="output"></span></p>
-        </div>
-      </div>
-    </div>
-    <div class="About">
-      <div class="content">
-        <h1>About</h1>
-      karthikeyan 
-      sri kanth
-      </div>
-    </div>
-    
-  <script src="script.js"></script>
-  <script src="loginscript.js"></script>
-</body>
+    <script src="loginscript.js"></script>
+    <!-- <script src="script.js"></script> -->
+  </body>
 </html>

@@ -31,7 +31,7 @@ function login() {
         for(let i = 0; i < keys.length; i++){
             if(keys[i] === email && values[i] === password){
                 // console.log("Success");
-                window.location.href = 'index.html';
+                window.location.href = 'index1.html';
             }
         }
     });
