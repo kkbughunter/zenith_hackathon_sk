@@ -1,7 +1,7 @@
 .tool-bar{
   padding: 0.5%;
   padding-bottom: 1.5%;
-  /* background-color: aqua; */
+  background-color: rgb(174, 226, 236);
 }
 .tool-bar samp{
   font-size: 20px;
@@ -14,10 +14,11 @@
   text-decoration: none;
   display: inline-block;
 }
-.profile-card, .box2 {
+.profile-card {
   display: inline-block;
   width: 20px;
   height: 20px;
+  margin-right: 1%;
 }
 .profile-card img{
   height: 30px;

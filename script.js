@@ -3,7 +3,7 @@ const onOffBtn = document.getElementById('onoff-btn');
 // Retrieve the string value from localStorage
 const username = localStorage.getItem("myString");
 console.log(username); // Output: main username
-
+document.getElementById("username").innerHTML = username+"  .";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
