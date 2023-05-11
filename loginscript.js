@@ -30,8 +30,9 @@ function login() {
 
         for(let i = 0; i < keys.length; i++){
             if(keys[i] === email && values[i] === password){
+                // Store the string value in localStorage
+                localStorage.setItem("myString",email);
                 window.location.replace("index1.html");
-
             }
         }
     });

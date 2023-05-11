@@ -1,5 +1,8 @@
 const modeBtn = document.getElementById('mode-btn');
 const onOffBtn = document.getElementById('onoff-btn');
+// Retrieve the string value from localStorage
+const username = localStorage.getItem("myString");
+console.log(username); // Output: main username
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -49,12 +52,12 @@ function setW_pumpState(w_pumpState) {
 }
 
 // Retrieve auto state and w_pump state from database when page is initially loaded
-database.ref("statuses/auto").once("value", snapshot => {
+database.ref(username+"/"+"statuses/auto").once("value", snapshot => {
   const autoState = snapshot.val();
   setModeBtnState(autoState);
 });
 
-database.ref("statuses/w_pump").once("value", snapshot => {
+database.ref(username+"/"+"statuses/w_pump").once("value", snapshot => {
   const w_pumpState = snapshot.val();
   setW_pumpState(w_pumpState);
 });
@@ -96,25 +99,25 @@ onOffBtn.addEventListener('click', () => {
 });
 
 function setAuto(val) {
-  var dataRef = database.ref("statuses");
+  var dataRef = database.ref(username+"/"+"statuses");
   dataRef.update({
     auto: val
   });
 }
 
 function setW_pump(val) {
-  var dataRef = database.ref("statuses");
+  var dataRef = database.ref(username+"/"+"statuses");
   dataRef.update({
     w_pump: val
   });
 }
 
-database.ref("info/temp").once("value", snapshot =>{
+database.ref(username+"/"+"info/temp").once("value", snapshot =>{
   var temperature = snapshot.val();
-  document.getElementById("temp").innerHTML = ("Temperature: "+temperature*10)+"`C";
+  document.getElementById("temp").innerHTML = ("Temperature: "+temperature)+"`C";
 });
 
-database.ref("field_geo_data/probability_list").once("value", snapshot => {
+database.ref(username+"/"+"field_geo_data/probability_list").once("value", snapshot => {
   const probability_list  = snapshot.val();
   var probability_js_list = [];
   for (var key in probability_list) {
@@ -122,7 +125,7 @@ database.ref("field_geo_data/probability_list").once("value", snapshot => {
   }
 });
 
-database.ref("field_geo_data/rain_list").once("value", snapshot => {
+database.ref(username+"/"+"field_geo_data/rain_list").once("value", snapshot => {
   const rain_list  = snapshot.val();
   var rain_js_list = [];
   for (var key in rain_list) {
@@ -154,18 +157,12 @@ const probabilityChart = new Chart(document.getElementById("probability_graph"),
 });
 
 
-database.ref("field_geo_data/probability_list").once("value", snapshot => {
+database.ref(username+"/"+"field_geo_data/probability_list").once("value", snapshot => {
   const probability_list = snapshot.val();
-
-  // Get labels and data arrays from probability_list object
   const labels = Object.keys(probability_list);
   const data = Object.values(probability_list);
-
-  // Update chart data and labels
   probabilityChart.data.labels = labels;
   probabilityChart.data.datasets[0].data = data;
-
-  // Update chart
   probabilityChart.update();
 });
 
@@ -193,17 +190,11 @@ const rainChart = new Chart(document.getElementById("rain_graph"), {
 });
 
 
-database.ref("field_geo_data/rain_list").once("value", snapshot => {
+database.ref(username+"/"+"field_geo_data/rain_list").once("value", snapshot => {
   const rain_list = snapshot.val();
-
-  // Get labels and data arrays from probability_list object
   const labels = Object.keys(rain_list);
   const data = Object.values(rain_list);
-
-  // Update chart data and labels
   rainChart.data.labels = labels;
   rainChart.data.datasets[0].data = data;
-
-  // Update chart
   rainChart.update();
 });
