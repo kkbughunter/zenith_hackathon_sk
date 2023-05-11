@@ -43,8 +43,8 @@
 }
 
 .manual-mode {
-  background-color: red;
-  color: white;
+  border-color: rgb(54, 42, 227);
+  color: rgb(96, 43, 43);
   height: 140px;
   width: 140px;
   border-radius: 10%;
@@ -54,8 +54,9 @@
 
 .off-mode{
   margin-top: 3%;
+  color: blueviolet;
   padding: 10px;
-  background-color: chartreuse;
+  border-color: rgb(67, 235, 0);
   border-radius: 14%;
   font-size: large;
   margin-left: 44px;
@@ -64,7 +65,9 @@
 .on-mode{
   margin-top: 3%;
   padding: 10px;
-  background-color: rgb(255, 89, 0);
+  color: darkmagenta;
+  border-color: rgb(145, 226, 255);
+  border-spacing: 12px;
   border-radius: 14%;
   font-size: large;
   margin-left: 48px;

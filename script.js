@@ -135,7 +135,7 @@ const probabilityChart = new Chart(document.getElementById("probability_graph"),
   data: {
     labels: [], // x-axis labels
     datasets: [{
-      label: "Probability List",
+      label: "Probability",
       data: [], // y-axis data
       backgroundColor: "rgba(255, 99, 132, 0.2)",
       borderColor: "rgba(255, 99, 132, 1)",
@@ -174,7 +174,7 @@ const rainChart = new Chart(document.getElementById("rain_graph"), {
   data: {
     labels: [], // x-axis labels
     datasets: [{
-      label: "Rain List",
+      label: "Rain fall",
       data: [], // y-axis data
       backgroundColor: "rgba(0, 0, 255, 0.566)",
       borderColor: "rgba(0, 0, 255, 0.566)",
