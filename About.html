@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .content{
-            padding: 5%;
+            display: flex;
+            justify-content: center;
         }
         .card {
         border: 1px solid #ddd;
@@ -33,25 +34,37 @@
         font-size: 16px;
         margin: 0;
         }
-
+        /* This is for mobile */
+        @media (max-width: 480px) {
+          
+        .content{
+            display: contents;
+            justify-content: center;
+        }
+        }
     </style>
 </head>
 <body>
-    
+  <h1>About us</h1>
 <div class="content">
     <div class="card">
         <img src="https://avatars.githubusercontent.com/u/91019132?v=4" alt="Image description">
         <div class="card-description">
           <h2>Karthikeyan A</h2>
-          <p>Short description of the card goes here.</p>
+          <p> Karthikeyan is a sophomore studying BE CS and will be responsible for taking care of 
+            the UI, web, and database for the project. You can contact him at via email at 
+            karthikeyan2110641@ssn.edu.in and karthikeyanit7020@gmail.com.</p>
         </div>
       </div>
+      <div style="width: 2%;height: 12%;"></div>
       <div style="float: right;">
       <div class="card">
         <img src="https://avatars.githubusercontent.com/u/130227649?v=4" alt="Image description">
         <div class="card-description">
           <h2>Sri Kanth</h2>
-          <p>Short description of the card goes here.</p>
+          <p>Srikanth Saravanan is a sophomore studying BE ECE and will be responsible for 
+            taking care of the Raiserbi Pi and Python code for the project. You can contact him at 
+            via email at srikanth2110893@ssn.edu.in and srikanth.saravanan13@gmail.com.</p>
         </div>
       </div>
       </div>

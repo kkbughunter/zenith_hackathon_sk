@@ -11,7 +11,7 @@
 <body>
     <div class="tool-bar">
       <strong><strong style="font-size: 34px;">WIAS-SK</strong></strong>
-        <a href="index.html">Dashboard</a>
+        <a href="index.html">LogOut</a>
         <a href="#Account.html">Account</a>
         <a href="About.html">About</a>
       <div class="profile-card">
@@ -23,44 +23,45 @@
     
 
     <div class="container">
-      <div class="box1">
-        <h1>Control</h1>
-        <div class="main-btn">
-          <!-- left side -->
-          <button id="mode-btn" class="auto-mode"><h1>Auto</h1></button>
-          <button id="onoff-btn" class="off-mode" style="display:none">Off</button>
+      <div class="master-content">
+        <div class="box1">
+          <h1>Control</h1>
+          <div class="main-btn">
+            <button id="mode-btn" class="auto-mode"><h1>Auto</h1></button>
+            <button id="onoff-btn" class="off-mode" style="display:none">Off</button>
+          </div>
+          <img src="img/hot.png" alt="temp" style="height: 40px; padding-top: 4%;padding-left: 6%; ">
+          <em class="weather" id="temp"></em>
+          <h3>Last updated date & Time<br></h3>
+          <strong id="updated-date" style="padding-left: 5%;"></strong> <br>         
+          <strong id="updated-time" style="padding-left: 5%;"></strong>
         </div>
-        <img src="img/hot.png" alt="temp" style="height: 40px; padding-top: 4%;padding-left: 6%; ">
-        <em class="weather" id="temp"></em>
-        <div>
-          <!--  right side -->
+
+        <div class="box2">
+          <h1>Statistics</h1>
+          <div class="graph">
+            <strong>Rain Probability Graph</strong>
+            <canvas id="probability_graph"></canvas>
+            <strong>Rain Range Graph</strong>
+            <canvas id="rain_graph" ></canvas>
+          </div>
         </div>
       </div>
-      <div class="box2">
-        <!-- Box 2 empty -->
-      </div>
+
       <div class="box3">
-        <h1>Statistics</h1>
-        <div class="graph">
-          <h4 style="margin-left: 20%;">Rain Probability Graph</h4>
-          <canvas id="probability_graph"  width="300px" height="100px"></canvas>
-          <h4 style="margin-left: 20%;">Rain Range Graph</h4>
-          <canvas id="rain_graph"  width="300px" height="100px"></canvas>
-        </div>
-      </div>
-      <div class="box4">
         <h1>More Information</h1>
         <div style="padding: 3%;">
-          <p>hello welcome to ssn Zenith Hackathon</p>
-          <p>Value: <span id="output"></span></p>
+          <p>We Will Update this in future if we get more information.<br>Thank You...</p>
+          <p><span id="output"></span></p>
         </div>
       </div>
     </div>
     <div class="About">
-      <div class="content">
+      <div style="padding: 3%;">
         <h1>About</h1>
-      karthikeyan 
-      sri kanth
+        This project is an automated irrigation system that integrates weather data for remote and local control. It is a customizable solution designed for medium and large scale agriculture. The system allows for efficient and optimized irrigation based on current weather conditions. Its automated features help to save time, money and resources, making it an ideal solution for farmers and other agricultural applications.
+      <br>
+      <a href="About.html">About project workers</a><br><br>
       </div>
     </div>
     

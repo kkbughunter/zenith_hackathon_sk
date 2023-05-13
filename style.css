@@ -7,7 +7,6 @@
   font-size: 20px;
 }
 .tool-bar a:link, .tool-bar a:visited {
-  /* background-color: white; */
   color: black;
   padding: 0.5% 3%;
   text-align: center;
@@ -96,11 +95,24 @@
   color: aliceblue;
   border-radius: 2%;
 }
-.content{
-  padding: 3%;
-}
-/* This is for mobile */
 
+.master-content {
+  display: flex;
+  justify-content: center;
+}
+
+.box1 {
+  width: 50%;
+  height: 70%;
+}
+
+.box2 {
+  width: 60%;
+  height: 70%;
+  margin-right: -10%;
+}
+
+/* This is for mobile */
 @media (max-width: 480px) {
   .main-btn{
     padding-left: 30%;
@@ -113,6 +125,21 @@
   .graph{
     height: 100%;
     width: 100%;
+  }
+  .master-content {
+    flex-direction: column;
+  }
+  
+  .box1, .box2 {
+    width: 100%;
+  }
+  
+  #mode-btn {
+    display: block;
+  }
+  
+  #onoff-btn {
+    display: none;
   }
 }
 

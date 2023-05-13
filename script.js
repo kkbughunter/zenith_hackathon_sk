@@ -118,7 +118,16 @@ function setW_pump(val) {
 
 database.ref(username+"/"+"info/temp").once("value", snapshot =>{
   var temperature = snapshot.val();
-  document.getElementById("temp").innerHTML = ("Temperature: "+temperature)+"`C";
+  document.getElementById("temp").innerHTML = ("Temperature: "+temperature)+"*C";
+});
+
+database.ref(username+"/"+"info/updated_time/date").once("value", snapshot =>{
+  var date = snapshot.val();
+  document.getElementById("updated-date").innerHTML = (date);
+});
+database.ref(username+"/"+"info/updated_time/time").once("value", snapshot =>{
+  var time = snapshot.val();
+  document.getElementById("updated-time").innerHTML = (time);
 });
 
 database.ref(username+"/"+"field_geo_data/probability_list").once("value", snapshot => {
