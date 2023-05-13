@@ -116,35 +116,65 @@ function setW_pump(val) {
   });
 }
 
-database.ref(username+"/"+"info/temp").once("value", snapshot =>{
-  var temperature = snapshot.val();
-  document.getElementById("temp").innerHTML = ("Temperature: "+temperature)+" <sup>o</sup><em>C</em>";
-});
+//  Live Update
+function loadData() {
+  // Fetch temperature data from Firebase
+  database.ref(username+"/"+"info/temp").on("value", function(snapshot) {
+    var temperature = snapshot.val();
+    document.getElementById("temp").innerHTML = ("Temperature: " + temperature + " <sup>o</sup><em>C</em>");
+  });
 
-database.ref(username+"/"+"info/updated_time/date").once("value", snapshot =>{
-  var date = snapshot.val();
-  document.getElementById("updated-date").innerHTML = (date);
-});
-database.ref(username+"/"+"info/updated_time/time").once("value", snapshot =>{
-  var time = snapshot.val();
-  document.getElementById("updated-time").innerHTML = (time);
-});
+  database.ref(username+"/"+"info/updated_time/date").on("value", function(snapshot){
+    var date = snapshot.val();
+    document.getElementById("updated-date").innerHTML = (date);
+  });
 
-database.ref(username+"/"+"field_geo_data/probability_list").once("value", snapshot => {
-  const probability_list  = snapshot.val();
-  var probability_js_list = [];
-  for (var key in probability_list) {
-    probability_js_list.push(probability_list[key]);
-  }
-});
+  database.ref(username+"/"+"info/updated_time/time").on("value", function(snapshot) {
+    var time = snapshot.val();
+    document.getElementById("updated-time").innerHTML = (time);
+  });
+  database.ref(username+"/"+"field_geo_data/probability_list").on("value", function(snapshot) {
+    const probability_list  = snapshot.val();
+    var probability_js_list = [];
+    for (var key in probability_list) {
+      probability_js_list.push(probability_list[key]);
+    }
+  });
+  
+  database.ref(username+"/"+"field_geo_data/rain_list").on("value",function(snapshot) {
+    const rain_list  = snapshot.val();
+    var rain_js_list = [];
+    for (var key in rain_list) {
+      rain_js_list.push(rain_list[key]);
+    }
+  });
 
-database.ref(username+"/"+"field_geo_data/rain_list").once("value", snapshot => {
-  const rain_list  = snapshot.val();
-  var rain_js_list = [];
-  for (var key in rain_list) {
-    rain_js_list.push(rain_list[key]);
-  }
-});
+  database.ref(username+"/"+"field_geo_data/probability_list").on("value", function(snapshot){
+    const probability_list = snapshot.val();
+    const labels = Object.keys(probability_list);
+    const data = Object.values(probability_list);
+    probabilityChart.data.labels = labels;
+    probabilityChart.data.datasets[0].data = data;
+    probabilityChart.update();
+  });
+
+  database.ref(username+"/"+"field_geo_data/rain_list").on("value", function(snapshot) {
+    const rain_list = snapshot.val();
+    const labels = Object.keys(rain_list);
+    const data = Object.values(rain_list);
+    rainChart.data.labels = labels;
+    rainChart.data.datasets[0].data = data;
+    rainChart.update();
+  });
+  
+  
+  
+}
+loadData();
+setInterval(loadData, 2000);
+
+
+
 
 const probabilityChart = new Chart(document.getElementById("probability_graph"), {
   type: "bar",
@@ -170,14 +200,7 @@ const probabilityChart = new Chart(document.getElementById("probability_graph"),
 });
 
 
-database.ref(username+"/"+"field_geo_data/probability_list").once("value", snapshot => {
-  const probability_list = snapshot.val();
-  const labels = Object.keys(probability_list);
-  const data = Object.values(probability_list);
-  probabilityChart.data.labels = labels;
-  probabilityChart.data.datasets[0].data = data;
-  probabilityChart.update();
-});
+
 
 const rainChart = new Chart(document.getElementById("rain_graph"), {
   type: "line",
@@ -203,11 +226,3 @@ const rainChart = new Chart(document.getElementById("rain_graph"), {
 });
 
 
-database.ref(username+"/"+"field_geo_data/rain_list").once("value", snapshot => {
-  const rain_list = snapshot.val();
-  const labels = Object.keys(rain_list);
-  const data = Object.values(rain_list);
-  rainChart.data.labels = labels;
-  rainChart.data.datasets[0].data = data;
-  rainChart.update();
-});
