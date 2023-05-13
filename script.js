@@ -71,6 +71,10 @@ modeBtn.addEventListener('click', () => {
     onOffBtn.style.display = 'block';
     setAuto(0);
     setModeBtnState(0);
+    database.ref(username+"/"+"statuses/w_pump").once("value", snapshot => {
+      const w_pumpState = snapshot.val();
+      setW_pumpState(w_pumpState);
+    });
   } else {
     modeBtn.classList.remove('manual-mode');
     modeBtn.classList.add('auto-mode');
