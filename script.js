@@ -3,7 +3,7 @@ const onOffBtn = document.getElementById('onoff-btn');
 // Retrieve the string value from localStorage
 const username = localStorage.getItem("myString");
 console.log(username); // Output: main username
-document.getElementById("username").innerHTML = username+"  .";
+document.getElementById("username").innerHTML = username+"&nbsp;";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -118,7 +118,7 @@ function setW_pump(val) {
 
 database.ref(username+"/"+"info/temp").once("value", snapshot =>{
   var temperature = snapshot.val();
-  document.getElementById("temp").innerHTML = ("Temperature: "+temperature)+"*C";
+  document.getElementById("temp").innerHTML = ("Temperature: "+temperature)+" <sup>o</sup><em>C</em>";
 });
 
 database.ref(username+"/"+"info/updated_time/date").once("value", snapshot =>{
@@ -147,14 +147,14 @@ database.ref(username+"/"+"field_geo_data/rain_list").once("value", snapshot => 
 });
 
 const probabilityChart = new Chart(document.getElementById("probability_graph"), {
-  type: "line",
+  type: "bar",
   data: {
     labels: [], // x-axis labels
     datasets: [{
       label: "Probability",
       data: [], // y-axis data
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgba(255, 99, 132, 1)",
+      backgroundColor: "rgba(0, 0, 255, 0.566)",
+      borderColor: "rgba(0, 0, 255, 0.566)",
       borderWidth: 1
     }]
   },
@@ -180,14 +180,14 @@ database.ref(username+"/"+"field_geo_data/probability_list").once("value", snaps
 });
 
 const rainChart = new Chart(document.getElementById("rain_graph"), {
-  type: "bar",
+  type: "line",
   data: {
     labels: [], // x-axis labels
     datasets: [{
       label: "Rain fall",
       data: [], // y-axis data
-      backgroundColor: "rgba(0, 0, 255, 0.566)",
-      borderColor: "rgba(0, 0, 255, 0.566)",
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(255, 99, 132, 1)",
       borderWidth: 1
     }]
   },
