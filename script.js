@@ -51,16 +51,7 @@ function setW_pumpState(w_pumpState) {
   }
 }
 
-// Retrieve auto state and w_pump state from database when page is initially loaded
-database.ref(username+"/"+"statuses/auto").once("value", snapshot => {
-  const autoState = snapshot.val();
-  setModeBtnState(autoState);
-});
 
-database.ref(username+"/"+"statuses/w_pump").once("value", snapshot => {
-  const w_pumpState = snapshot.val();
-  setW_pumpState(w_pumpState);
-});
 
 // Set mode button state and update database when mode button is clicked
 modeBtn.addEventListener('click', () => {
@@ -166,12 +157,44 @@ function loadData() {
     rainChart.data.datasets[0].data = data;
     rainChart.update();
   });
-  
-  
+  database.ref(username+"/"+"statuses/connection").once("value", function(snapshot) {
+    check = snapshot.val();
+    // console.log(check)
+    if(check['b'] == check['f']){
+      statuscheck.classList.remove('status_connected')
+      statuscheck.classList.add('status_not_connected')
+    }
+    else{
+      statuscheck.classList.remove("status_not_connected")
+      statuscheck.classList.add("status_connected")
+      if(check['f'] == 1){
+          var fval = database.ref(username+"/"+"statuses/connection/");
+          fval.update({
+            f: 0
+          });
+      }
+      else{
+          var fval = database.ref(username+"/"+"statuses/connection/");
+          fval.update({
+            f: 1
+          });
+      }
+    }
+  });
+  console.log("test")
+  database.ref(username+"/"+"statuses/auto").on("value", function(snapshot) {
+    const autoState = snapshot.val();
+    setModeBtnState(autoState);
+  });
+
+  database.ref(username+"/"+"statuses/w_pump").on("value", function(snapshot){
+    const w_pumpState = snapshot.val();
+    setW_pumpState(w_pumpState);
+  });
   
 }
 loadData();
-setInterval(loadData, 2000);
+setInterval(loadData, 4000);
 
 
 

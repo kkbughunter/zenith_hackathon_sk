@@ -73,6 +73,19 @@
   margin-left: 48px;
 }
 
+.status_connected{
+  margin-top: 3%;
+  margin-left: 15%;
+  padding: 10px;
+  background-color: chartreuse;
+}
+.status_not_connected{
+  margin-top: 3%;
+  margin-left: 15%;
+  padding: 10px;
+  background-color: rgb(244, 0, 0);
+}
+
 .info{
   margin-left: 5%;
   background-color: rgb(211, 220, 211);
