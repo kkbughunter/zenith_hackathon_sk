@@ -75,15 +75,21 @@
 
 .status_connected{
   margin-top: 3%;
-  margin-left: 15%;
+  margin-left: 15%;  
+  width: fit-content;
   padding: 10px;
   background-color: chartreuse;
+  background-image: url("img/wifi.svg");
+  background-repeat: no-repeat;
 }
 .status_not_connected{
   margin-top: 3%;
   margin-left: 15%;
+  width: fit-content;
   padding: 10px;
   background-color: rgb(244, 0, 0);
+  background-image: url("img/wifi-off.svg");
+  background-repeat: no-repeat;
 }
 
 .info{

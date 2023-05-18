@@ -1,11 +1,9 @@
 const modeBtn = document.getElementById('mode-btn');
 const onOffBtn = document.getElementById('onoff-btn');
-// Retrieve the string value from localStorage
 const username = localStorage.getItem("myString");
 console.log(username); // Output: main username
 document.getElementById("username").innerHTML = username+"&nbsp;";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyB6-6vGAQcsuqMm172-IkMomesTy_Uk0Y8",
   authDomain: "weather-pi2app.firebaseapp.com",
@@ -38,7 +36,6 @@ function setModeBtnState(autoState) {
   }
 }
 
-// Function to set on/off button state based on w_pump state in the database
 function setW_pumpState(w_pumpState) {
   if (w_pumpState === 1) {
     onOffBtn.classList.remove('off-mode');
@@ -51,9 +48,6 @@ function setW_pumpState(w_pumpState) {
   }
 }
 
-
-
-// Set mode button state and update database when mode button is clicked
 modeBtn.addEventListener('click', () => {
   if (modeBtn.classList.contains('auto-mode')) {
     modeBtn.classList.remove('auto-mode');
@@ -62,7 +56,7 @@ modeBtn.addEventListener('click', () => {
     onOffBtn.style.display = 'block';
     setAuto(0);
     setModeBtnState(0);
-    database.ref(username+"/"+"statuses/w_pump").once("value", snapshot => {
+    database.ref(username+"/statuses/w_pump").once("value", snapshot => {
       const w_pumpState = snapshot.val();
       setW_pumpState(w_pumpState);
     });
@@ -76,7 +70,6 @@ modeBtn.addEventListener('click', () => {
   }
 });
 
-// Set on/off button state and update database when on/off button is clicked
 onOffBtn.addEventListener('click', () => {
   if (onOffBtn.classList.contains('off-mode')) {
     onOffBtn.classList.remove('off-mode');
@@ -94,14 +87,14 @@ onOffBtn.addEventListener('click', () => {
 });
 
 function setAuto(val) {
-  var dataRef = database.ref(username+"/"+"statuses");
+  var dataRef = database.ref(username+"/statuses");
   dataRef.update({
     auto: val
   });
 }
 
 function setW_pump(val) {
-  var dataRef = database.ref(username+"/"+"statuses");
+  var dataRef = database.ref(username+"/statuses");
   dataRef.update({
     w_pump: val
   });
@@ -110,21 +103,21 @@ function setW_pump(val) {
 //  Live Update
 function loadData() {
   // Fetch temperature data from Firebase
-  database.ref(username+"/"+"info/temp").on("value", function(snapshot) {
+  database.ref(username+"/info/temp").on("value", function(snapshot) {
     var temperature = snapshot.val();
     document.getElementById("temp").innerHTML = ("Temperature: " + temperature + " <sup>o</sup><em>C</em>");
   });
 
-  database.ref(username+"/"+"info/updated_time/date").on("value", function(snapshot){
+  database.ref(username+"/info/updated_time/date").on("value", function(snapshot){
     var date = snapshot.val();
     document.getElementById("updated-date").innerHTML = (date);
   });
 
-  database.ref(username+"/"+"info/updated_time/time").on("value", function(snapshot) {
+  database.ref(username+"/info/updated_time/time").on("value", function(snapshot) {
     var time = snapshot.val();
     document.getElementById("updated-time").innerHTML = (time);
   });
-  database.ref(username+"/"+"field_geo_data/probability_list").on("value", function(snapshot) {
+  database.ref(username+"/field_geo_data/probability_list").on("value", function(snapshot) {
     const probability_list  = snapshot.val();
     var probability_js_list = [];
     for (var key in probability_list) {
@@ -132,7 +125,7 @@ function loadData() {
     }
   });
   
-  database.ref(username+"/"+"field_geo_data/rain_list").on("value",function(snapshot) {
+  database.ref(username+"/field_geo_data/rain_list").on("value",function(snapshot) {
     const rain_list  = snapshot.val();
     var rain_js_list = [];
     for (var key in rain_list) {
@@ -140,7 +133,7 @@ function loadData() {
     }
   });
 
-  database.ref(username+"/"+"field_geo_data/probability_list").on("value", function(snapshot){
+  database.ref(username+"/field_geo_data/probability_list").on("value", function(snapshot){
     const probability_list = snapshot.val();
     const labels = Object.keys(probability_list);
     const data = Object.values(probability_list);
@@ -149,7 +142,7 @@ function loadData() {
     probabilityChart.update();
   });
 
-  database.ref(username+"/"+"field_geo_data/rain_list").on("value", function(snapshot) {
+  database.ref(username+"/field_geo_data/rain_list").on("value", function(snapshot) {
     const rain_list = snapshot.val();
     const labels = Object.keys(rain_list);
     const data = Object.values(rain_list);
@@ -157,24 +150,26 @@ function loadData() {
     rainChart.data.datasets[0].data = data;
     rainChart.update();
   });
-  database.ref(username+"/"+"statuses/connection").once("value", function(snapshot) {
+  database.ref(username+"/statuses/connection").once("value", function(snapshot) {
     check = snapshot.val();
     // console.log(check)
     if(check['b'] == check['f']){
       statuscheck.classList.remove('status_connected')
       statuscheck.classList.add('status_not_connected')
+      statuscheck.textContent = "^  Disconnected"
     }
     else{
       statuscheck.classList.remove("status_not_connected")
       statuscheck.classList.add("status_connected")
+      statuscheck.textContent = "^ Connected"
       if(check['f'] == 1){
-          var fval = database.ref(username+"/"+"statuses/connection/");
+          var fval = database.ref(username+"/statuses/connection/");
           fval.update({
             f: 0
           });
       }
       else{
-          var fval = database.ref(username+"/"+"statuses/connection/");
+          var fval = database.ref(username+"/statuses/connection/");
           fval.update({
             f: 1
           });
@@ -182,19 +177,33 @@ function loadData() {
     }
   });
   console.log("test")
-  database.ref(username+"/"+"statuses/auto").on("value", function(snapshot) {
+  database.ref(username+"/statuses/auto").on("value", function(snapshot) {
     const autoState = snapshot.val();
     setModeBtnState(autoState);
+    if(autoState == 0) document.getElementById("mod").innerHTML = "MANUAL MODE";
+    else document.getElementById("mod").innerHTML = "AUTOMATIC MODE";
   });
 
-  database.ref(username+"/"+"statuses/w_pump").on("value", function(snapshot){
+  database.ref(username+"/statuses/w_pump").on("value", function(snapshot){
     const w_pumpState = snapshot.val();
     setW_pumpState(w_pumpState);
+    if(w_pumpState == 0) document.getElementById("motor").innerHTML = "OFF";
+    else document.getElementById("motor").innerHTML = "ON";
+  });
+  database.ref(username+"/statuses/weather").on("value", function(snapshot){
+    const wea = snapshot.val();
+    if(wea == 0) document.getElementById("weather_dec").innerHTML = "Automatic motore state OFF";
+    else document.getElementById("weather_dec").innerHTML = "Automatic motore state ON";
+  });
+  database.ref(username+"/statuses/sensor").on("value", function(snapshot){
+    const wea = snapshot.val();
+    if(wea == 0) document.getElementById("sen").innerHTML = "0";
+    else document.getElementById("sen").innerHTML = "1";
   });
   
 }
 loadData();
-setInterval(loadData, 4000);
+setInterval(loadData, 2000);
 
 
 
