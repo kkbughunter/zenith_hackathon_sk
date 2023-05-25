@@ -4,6 +4,9 @@ const username = localStorage.getItem("myString");
 console.log(username); // Output: main username
 document.getElementById("username").innerHTML = username+"&nbsp;";
 
+const button1 = document.getElementById("mode-btn");
+const button2 = document.getElementById("onoff-btn");
+
 const firebaseConfig = {
   apiKey: "AIzaSyB6-6vGAQcsuqMm172-IkMomesTy_Uk0Y8",
   authDomain: "weather-pi2app.firebaseapp.com",
@@ -203,9 +206,11 @@ function loadData() {
   
   database.ref(username+"/statuses/override").on("value", function(snapshot) {
     const State = snapshot.val();
-    if(State == 0){
+    if(State == 1){
       button1.disabled = true;
       button2.disabled = true;
+      var element = document.body;
+      element.classList.toggle("dark-mode");
     }
     else{
       button1.disabled = false;
@@ -267,19 +272,11 @@ const rainChart = new Chart(document.getElementById("rain_graph"), {
 });
 
 
-// /statuses/override
-const button1 = document.getElementById("mode-btn");
-const button2 = document.getElementById("onoff-btn");
-const enable = document.getElementById("enable");
-const disable = document.getElementById("disable");
+
+const enable = document.getElementById("over");
 // function to disable the buttons
 const disableButtons = () => {
-  button1.disabled = true;
-  button2.disabled = true;
-  var dataRef = database.ref(username+"/statuses");
-  dataRef.update({
-    override: 0
-  });
+  
 };
 const enableButtons = () => {
   button1.disabled = false;
@@ -293,3 +290,30 @@ const enableButtons = () => {
 disable.addEventListener("click", disableButtons);
 // calling the enableButtons() function when the enable button is clicked
 enable.addEventListener("click", enableButtons);
+
+function myFunction() {
+  
+
+  database.ref(username+"/statuses/override").once("value", function(snapshot) {
+  const States = snapshot.val();
+  if(States == 0){
+    button1.disabled = true;
+    button2.disabled = true;
+    var dataRef = database.ref(username+"/statuses");
+    dataRef.update({
+      override: 1
+    });
+  }
+  else{
+    button1.disabled = false;
+    button2.disabled = false;
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+    var dataRef = database.ref(username+"/statuses");
+    dataRef.update({
+      override: 0
+    });
+  }
+  });
+
+}
