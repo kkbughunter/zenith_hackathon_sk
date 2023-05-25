@@ -1,3 +1,13 @@
+body {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode {
+  background-color: rgb(189, 189, 189);
+  color: rgb(8, 8, 8);
+}
+
 .tool-bar{
   padding: 0.5%;
   padding-bottom: 1.5%;
@@ -162,4 +172,3 @@
     display: none;
   }
 }
-
