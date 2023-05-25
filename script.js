@@ -201,6 +201,18 @@ function loadData() {
     else document.getElementById("sen").innerHTML = "1";
   });
   
+  database.ref(username+"/statuses/override").on("value", function(snapshot) {
+    const State = snapshot.val();
+    if(State == 0){
+      button1.disabled = true;
+      button2.disabled = true;
+    }
+    else{
+      button1.disabled = false;
+      button2.disabled = false;
+    }
+  });
+  
 }
 loadData();
 setInterval(loadData, 2000);
@@ -257,6 +269,7 @@ const rainChart = new Chart(document.getElementById("rain_graph"), {
   }
 });
 
+
 // /statuses/override
 const button1 = document.getElementById("mode-btn");
 const button2 = document.getElementById("onoff-btn");
@@ -266,10 +279,18 @@ const disable = document.getElementById("disable");
 const disableButtons = () => {
   button1.disabled = true;
   button2.disabled = true;
+  var dataRef = database.ref(username+"/statuses");
+  dataRef.update({
+    override: 0
+  });
 };
 const enableButtons = () => {
   button1.disabled = false;
   button2.disabled = false;
+  var dataRef = database.ref(username+"/statuses");
+  dataRef.update({
+    override: 1
+  });
 };
 // calling the disableButtons() function when the disable button is clicked
 disable.addEventListener("click", disableButtons);
