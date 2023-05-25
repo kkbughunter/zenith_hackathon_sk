@@ -257,4 +257,21 @@ const rainChart = new Chart(document.getElementById("rain_graph"), {
   }
 });
 
-
+// /statuses/override
+const button1 = document.getElementById("mode-btn");
+const button2 = document.getElementById("onoff-btn");
+const enable = document.getElementById("enable");
+const disable = document.getElementById("disable");
+// function to disable the buttons
+const disableButtons = () => {
+  button1.disabled = true;
+  button2.disabled = true;
+};
+const enableButtons = () => {
+  button1.disabled = false;
+  button2.disabled = false;
+};
+// calling the disableButtons() function when the disable button is clicked
+disable.addEventListener("click", disableButtons);
+// calling the enableButtons() function when the enable button is clicked
+enable.addEventListener("click", enableButtons);
