@@ -165,7 +165,7 @@ function loadData() {
       statuscheck.classList.remove("status_not_connected")
       statuscheck.classList.add("status_connected")
       statuscheck.textContent = "^ Connected"
-      if(check['b'] == 1){
+      if(check['b'] == 0){
           var fval = database.ref(username+"/statuses/connection/");
           fval.update({
             f: 0
