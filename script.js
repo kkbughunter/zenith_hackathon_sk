@@ -220,7 +220,7 @@ function loadData() {
   
 }
 loadData();
-setInterval(loadData, 2000);
+setInterval(loadData, 5000);
 
 const probabilityChart = new Chart(document.getElementById("probability_graph"), {
   type: "bar",
