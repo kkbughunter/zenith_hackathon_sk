@@ -153,32 +153,7 @@ function loadData() {
     rainChart.data.datasets[0].data = data;
     rainChart.update();
   });
-  database.ref(username+"/statuses/connection").once("value", function(snapshot) {
-    check = snapshot.val();
-    // console.log(check)
-    if(check['b'] == check['f']){
-      statuscheck.classList.remove('status_connected')
-      statuscheck.classList.add('status_not_connected')
-      statuscheck.textContent = "^  Disconnected"
-    }
-    else{
-      statuscheck.classList.remove("status_not_connected")
-      statuscheck.classList.add("status_connected")
-      statuscheck.textContent = "^ Connected"
-      if(check['b'] == 0){
-          var fval = database.ref(username+"/statuses/connection/");
-          fval.update({
-            f: 0
-          });
-      }
-      else{
-          var fval = database.ref(username+"/statuses/connection/");
-          fval.update({
-            f: 1
-          });
-      }
-    }
-  });
+  
   console.log("test")
   database.ref(username+"/statuses/auto").on("value", function(snapshot) {
     const autoState = snapshot.val();
@@ -220,7 +195,39 @@ function loadData() {
   
 }
 loadData();
-setInterval(loadData, 5000);
+setInterval(loadData, 1000);
+
+function conloop(){
+ database.ref(username+"/statuses/connection").once("value", function(snapshot) {
+    check = snapshot.val();
+    // console.log(check)
+    if(check['b'] == check['f']){
+      statuscheck.classList.remove('status_connected')
+      statuscheck.classList.add('status_not_connected')
+      statuscheck.textContent = "^  Disconnected"
+    }
+    else{
+      statuscheck.classList.remove("status_not_connected")
+      statuscheck.classList.add("status_connected")
+      statuscheck.textContent = "^ Connected"
+      if(check['b'] == 0){
+          var fval = database.ref(username+"/statuses/connection/");
+          fval.update({
+            f: 0
+          });
+      }
+      else{
+          var fval = database.ref(username+"/statuses/connection/");
+          fval.update({
+            f: 1
+          });
+      }
+    }
+  }); 
+}
+
+conloop();
+setInterval(conloop, 5000);
 
 const probabilityChart = new Chart(document.getElementById("probability_graph"), {
   type: "bar",
