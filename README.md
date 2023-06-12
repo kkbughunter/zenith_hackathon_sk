@@ -63,5 +63,7 @@ For any inquiries or questions regarding the project, feel free to reach out to 
 - Email: [karthikeyan2110641@ssn.edu.in](mailto:karthikeyan2110641@ssn.edu.in)
 - GitHub: [https://github.com/KKBUGHUNTER](https://github.com/KKBUGHUNTER)
 
+[Overall](https://github.com/KKBUGHUNTER/zenith_hackathon_sk/assets/91019132/8582f4d2-7e13-4f46-b52d-4922b8a1220d)<br>
+[Model](https://github.com/KKBUGHUNTER/zenith_hackathon_sk/assets/91019132/5461ef76-99b4-4be4-971b-429a61b74f8c)<br>
 
 # Thank you...
