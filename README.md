@@ -1,5 +1,5 @@
-# Weather Integrated Automated Irrigation System (WIAIS) [Web page View](https://kkbughunter.github.io/zenith_hackathon_sk/)
-## Table of Contents
+# Weather Integrated Automated Irrigation System (WIAIS) 
+## Table of Contents [Web page](https://kkbughunter.github.io/zenith_hackathon_sk/)
 - [Project Description](#project-description)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
