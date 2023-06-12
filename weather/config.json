@@ -1,0 +1,17 @@
+{
+"location_coord":"12.750480,80.198933",
+"user":"sk",
+"automatic-check-interval":1200,
+"local-w_pump-switch-pin":8,
+"local-mode-control-switch-pin":10,
+"w_pump-pin":7,
+"polling-interval":1,
+"offline-status-pin":13,
+"online-status-pin":15,
+"auto-mode-status-pin":16,
+"manual-mode-status-pin":18,
+"local-override-status-pin":22,
+"sensor-pin":11,
+"firebase-api-file-path":<--PATH-->,
+"visual-crossing-weather-api-key":<--key-->
+}
